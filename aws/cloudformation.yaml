@@ -1,0 +1,184 @@
+Parameters:
+  DomainName:
+    Type: String
+    Description: The domain name for the web portal
+    Default: firstchoicedomestic.com
+
+Resources:
+  prodWebPortalVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+
+  prodWebPortalInternetGateway:
+    Type: AWS::EC2::InternetGateway
+
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref prodWebPortalVPC
+      InternetGatewayId: !Ref prodWebPortalInternetGateway
+
+  prodWebPortalSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref prodWebPortalVPC
+      CidrBlock: 10.0.0.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+  # it is a good practice to create a route table and associate it with the subnet
+  prodWebPortalRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref prodWebPortalVPC
+
+  prodWebPortalRoute:
+    Type: AWS::EC2::Route
+    DependsOn: AttachGateway
+    Properties:
+      RouteTableId: !Ref prodWebPortalRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref prodWebPortalInternetGateway
+
+  prodWebPortalSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref prodWebPortalSubnet
+      RouteTableId: !Ref prodWebPortalRouteTable
+
+
+
+  prodWebPortalSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for WebPortal web portal
+      VpcId: !Ref prodWebPortalVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0   # Allow HTTP access from anywhere
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0   
+          # allow ssh access from anywhere
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 3000
+          ToPort: 3000
+          CidrIp: 0.0.0.0/0 
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+
+  prodWebPortalEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-080e1f13689e07408
+      KeyName: cleaningKeyPair
+      SecurityGroupIds:
+        - !Ref prodWebPortalSecurityGroup
+      SubnetId: !Ref prodWebPortalSubnet
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          # Install Nginx
+          sudo apt update
+          sudo apt install nginx -y
+          sudo systemctl enable nginx
+          sudo systemctl start nginx
+
+          # Configure Nginx
+          sudo bash -c 'cat > /etc/nginx/sites-available/firstchoicedomestic.com.conf <<EOF
+          server {
+              listen 80;
+              server_name firstchoicedomestic.com www.firstchoicedomestic.com;
+
+              location / {
+                  proxy_pass http://localhost:3000;
+                  proxy_set_header Host \$host;
+                  proxy_set_header X-Real-IP \$remote_addr;
+                  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto \$scheme;
+              }
+          }
+          EOF'
+
+          sudo ln -s /etc/nginx/sites-available/firstchoicedomestic.com.conf /etc/nginx/sites-enabled/
+          sudo systemctl reload nginx
+
+          # Install Docker
+          # Add Docker's official GPG key:
+          sudo apt-get update
+          sudo apt-get install ca-certificates curl
+          sudo install -m 0755 -d /etc/apt/trusted.gpg.d/
+        
+          # Add the repository to Apt sources:
+          echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+          sudo apt-get update -y
+          sudo apt-get install docker-ce docker-ce-cli containerd.io 
+
+          # Remove the previous Docker container
+          sudo docker rm -f web-portal
+          sudo docker rmi -f nexttechglobe/web-portal:latest
+
+          # Run the Docker container
+          sudo docker run -d -p 3000:80 --name web-portal nexttechglobe/web-portal:latest
+
+
+  ProdWebPortalEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  EIPAssociation:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      InstanceId: !Ref prodWebPortalEC2Instance
+      EIP: !Ref ProdWebPortalEIP
+  ProdWebPortalDNS:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Ref DomainName
+  ProdWebPortalDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref ProdWebPortalDNS
+      Name: !Ref DomainName
+      Type: A
+      TTL: '300'
+      ResourceRecords:
+        - !GetAtt ProdWebPortalEIP.PublicIp
+        
+
+Outputs:
+  prodWebPortalVPC:
+    Description: The ID of the VPC
+    Value: !Ref prodWebPortalVPC
+    Export:
+      Name: !Sub "${AWS::StackName}-VPC-ID"
+  prodWebPortalSubnet:
+    Description: The ID of the Subnet
+    Value: !Ref prodWebPortalSubnet
+    Export:
+      Name: !Sub "${AWS::StackName}-Subnet-ID"
+  prodWebPortalSecurityGroup:
+    Description: The ID of the Security Group
+    Value: !Ref prodWebPortalSecurityGroup
+    Export:
+      Name: !Sub "${AWS::StackName}-SecurityGroup-ID"
+  prodWebPortalEC2Instance:
+    Description: The ID of the EC2 Instance
+    Value: !Ref prodWebPortalEC2Instance
+    Export:
+      Name: !Sub "${AWS::StackName}-EC2Instance-ID"
+  sshKey:
+    Description: The name of the SSH Key
+    Value: !Ref sshKey
+    Export:
+      Name: !Sub "${AWS::StackName}-SSHKey-Name"

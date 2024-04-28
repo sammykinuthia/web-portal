@@ -30,15 +30,15 @@ export default function AboutSection() {
       </section>
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
-          <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Contact Us</h2>
+          {/* <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]"> */}
+            {/* <div className="flex flex-col justify-center items-center space-y-4"> */}
+              <div className="space-y-2 flex flex-col items-center justify-center">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mb-8">Contact Us</h2>
                 <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                   Get in touch with us for all your cleaning needs.
                 </p>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 w-full flex flex-col items-center">
                 <div className="flex items-center gap-2">
                   <MapPinIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                   <p className="text-gray-500 dark:text-gray-400">123 Main St, Anytown USA</p>
@@ -54,14 +54,14 @@ export default function AboutSection() {
               </div>
             </div>
             <div className="rounded-lg overflow-hidden" />
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
       </section>
     </>
   )
 }
 
-function MailIcon(props:any) {
+function MailIcon(props: any) {
   return (
     <svg
       {...props}
@@ -82,7 +82,7 @@ function MailIcon(props:any) {
 }
 
 
-function MapPinIcon(props:any) {
+function MapPinIcon(props: any) {
   return (
     <svg
       {...props}
@@ -103,7 +103,7 @@ function MapPinIcon(props:any) {
 }
 
 
-function PhoneIcon(props:any) {
+function PhoneIcon(props: any) {
   return (
     <svg
       {...props}

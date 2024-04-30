@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader } from "./ui/card"
 
 export default function Testimonials() {
     return (
-        <div className="w-full container mx-auto flex flex-col justify-center items-center my-8">
+        <div className=" w-full container mx-auto flex flex-col justify-center items-center my-8">
             <div className="w-full flex justify-center my-8">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center">What Our Customers Say</h2>
             </div>

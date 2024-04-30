@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button"
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet"
-import { Link, useLocation } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import Logo from '/public/cleaning.png'
 import { cn } from "@/lib/utils"
 
@@ -34,15 +34,14 @@ export default function NavBar() {
                         <Link className={cn([
                             "flex w-full items-center py-2 text-lg font-semibold",
                             location=='/about' && 'text-teal-900 border-b-4 border-teal-900'
-                        ])} to="/about">
+                        ])} to="/#about">
                             About
                         </Link>
-                        <Link className={cn([
-                            "flex w-full items-center py-2 text-lg font-semibold",
-                            location=='/services' ? 'text-teal-900 border-b-4 border-teal-900':""
-                        ])} to="/services">
+                        <NavLink className={cn([
+                            "flex w-full items-center py-2 text-lg font-semibold"
+                        ])} to={"/#services"}>
                             Services
-                        </Link>
+                        </NavLink>
                         <Link className={cn([
                             "flex w-full items-center py-2 text-lg font-semibold",
                             location=='/contacts' && 'text-teal-900 border-b-4 border-teal-900'
@@ -64,11 +63,11 @@ export default function NavBar() {
                 <Link className={cn([
                     "group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50",
                     location=="/about"? "text-teal-900 border-b-4 border-teal-900":""
-                ])} to="/about">About</Link>
-                <Link className={cn([
+                ])} to="/#about">About</Link>
+                <NavLink className={cn([
                     "group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50",
-                    location=="/services"? "text-teal-900 border-b-4 border-teal-900":""
-                ])} to="/services">Services</Link>
+                  
+                ])} to="/#services">Services</NavLink>
                 <Link className={cn([
                     "group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50",
                     location=="/contacts"? "text-teal-900 border-b-4 border-teal-900":""

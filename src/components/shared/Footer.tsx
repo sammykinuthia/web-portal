@@ -17,10 +17,10 @@ export default function Footer() {
           <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/">
             Home
           </Link>
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/about">
+          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/#about">
             About
           </Link>
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/services">
+          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/#services">
             Services
           </Link>
           <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/contacts">

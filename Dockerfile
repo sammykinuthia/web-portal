@@ -1,11 +1,11 @@
 # Use a Node.js image as a build environment
-FROM node:14-alpine as build
+FROM node:17 as build
 
 # Set the working directory
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package.json /app
 
 # Install dependencies
 RUN npm install
@@ -27,4 +27,5 @@ COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 
 # Command to start Nginx
+# CMD ["npm", "run", "preview"]
 CMD ["nginx", "-g", "daemon off;"]

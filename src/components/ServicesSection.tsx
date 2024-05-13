@@ -1,6 +1,23 @@
 import clean from '/clean.webp'
 import office from '/office.webp'
 
+
+const domestic = [
+  "Regular Weekly Home Cleaning",
+  "Fortnightly Cleaning",
+  "One-Off Cleaning",
+  "Spring Cleaning",
+  "After Builder Clean",
+  "Short Notice Clean",
+  "24/7 Cleaning"
+]
+
+const commercial = [
+  "Commercial Cleaning",
+  "Office Cleaning",
+  "Event Cleaning"
+]
+
 export default function ServicesSection() {
   return (
     <>
@@ -13,18 +30,13 @@ export default function ServicesSection() {
             <div className="flex flex-col  space-y-4">
               <div className="space-y-2 p-4 md:px-12">
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tighter  my-4">Home Cleaning Solutions</h1>
-                <div className="flex items-center gap-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
-                  <p className='text-lg'>Regular Weekly Home Cleaning</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
-                  <p className='text-lg'>Move In/Out Cleaning</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
-                  <p className='text-lg'>Event Cleaning</p>
-                </div>
+               {domestic.map((d,i)=>(
+                 <div key={i} className="flex items-center gap-4">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
+                 <p className='text-lg'>{d}</p>
+               </div>
+               ))}
+               
               </div>
             </div>
             <img
@@ -46,18 +58,12 @@ export default function ServicesSection() {
             <div className="flex flex-col  space-y-4 ">
               <div className="space-y-2 p-4 md:p-12">
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tighter  my-4">Commercial Cleaning Solutions</h1>
-                <div className="flex items-center gap-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
-                  <p className='text-lg'>Office Cleaning</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
-                  <p className='text-lg'>Commercial Building Cleaning</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
-                  <p className='text-lg'>Event Cleaning</p>
-                </div>
+                {commercial.map((d,i)=>(
+                 <div key={i} className="flex items-center gap-4">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="#00695C" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z" /></svg>
+                 <p className='text-lg'>{d}</p>
+               </div>
+               ))}
               </div>
             </div>
           </div>

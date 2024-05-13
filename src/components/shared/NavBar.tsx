@@ -10,7 +10,7 @@ export default function NavBar() {
     console.log(location);
     
     return (
-        <header className=" border-b w-full">
+        <header className=" border-b w-full sticky top-0 z-50 bg-white">
             <div className="container mx-auto flex w-full shrink-0 items-center px-4 py-2 md:px-6 ">
             <Sheet>
                 <SheetTrigger asChild>

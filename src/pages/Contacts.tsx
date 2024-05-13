@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link } from "react-router-dom"
 
+const thanksUrl = process.env.VITE_THANKS_URL;
+
 function ContactPage() {
   return (
     <section className="w-full py-12 ">
@@ -25,28 +27,31 @@ function ContactPage() {
                 <CardTitle className="text-center">Send Us a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4 my-4">
+                <form className="space-y-4 my-4" action="https://formsubmit.co/cf3fbde17720892617c235796359ec19" method="POST">
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div className="space-y-1">
                       <Label htmlFor="name">Name</Label>
-                      <Input className="border-gray-200 rounded-xl placeholder:text-gray-400" id="name" placeholder="Enter your name" />
+                      <Input required className="border-gray-200 rounded-xl placeholder:text-gray-400" id="name" name="name" placeholder="Enter your name" />
                     </div>
                     <div className="space-y-1">
                       <Label htmlFor="email">Email</Label>
-                      <Input className="border-gray-200 rounded-xl placeholder:text-gray-400" id="email" placeholder="Enter your email" type="email" />
+                      <Input required className="border-gray-200 rounded-xl placeholder:text-gray-400" id="email" name="email" placeholder="Enter your email" type="email" />
                     </div>
                   </div>
+                  <input type="hidden" name="_captcha" value="false"/>
+                  <input type="hidden" name="_next" value={thanksUrl}/>
+                  <input type="hidden" name="_subject" value="WEBSITE:Cleaning Service Message"/>
 
                   <div className="space-y-1">
                     <Label htmlFor="message">Message</Label>
-                    <Textarea className="min-h-[150px] border-gray-200 rounded-xl placeholder:text-gray-400" id="message" placeholder="Enter your message" />
+                    <Textarea required className="min-h-[150px] border-gray-200 rounded-xl placeholder:text-gray-400" id="message" name="message" placeholder="Enter your message" />
                   </div>
-                </form>
-                <CardFooter>
+                <CardFooter className="px-0">
                   <Button className="w-full bg-teal-800 text-white rounded-xl  hover:bg-teal-700 active:bg-teal-700" type="submit">
                     Submit
                   </Button>
                 </CardFooter>
+                </form>
               </CardContent>
             </Card>
           </div>
@@ -71,28 +76,15 @@ function ContactPage() {
                 <h4 className="text-sm font-medium">Contact</h4>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Phone:
-                  <Link to="#">+1 (234) 567-890</Link>
+                  <Link to="tel:07781103864"> 0778 110 3864</Link>
                   <br />
                   Email:
-                  <Link to="#">info@example.com</Link>
+                  <Link to="mailto:firstchoicedomestic@suremail.gg"> firstchoicedomestic@suremail.gg</Link>
                 </p>
               </div>
               <div>
                 <h4 className="text-sm font-medium">Location</h4>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Merton Vinery, La Rue Des Pointes, GY6 8UJ.</p>
-                {/* <div className="mt-2">
-                  <img
-                    alt="Map of business location"
-                    className="rounded-md"
-                    height="150"
-                    src="/placeholder.svg"
-                    style={{
-                      aspectRatio: "300/150",
-                      objectFit: "cover",
-                    }}
-                    width="300"
-                  />
-                </div> */}
               </div>
             </CardContent>
           </Card>

@@ -14,15 +14,19 @@ export default function Contact() {
         <div className="space-y-2 w-full flex flex-col items-center">
           <div className="flex items-center gap-2">
             <MapPinIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-            <p className="text-gray-500 dark:text-gray-400">123 Main St, Anytown USA</p>
+            <p className="text-gray-500 dark:text-gray-400">Merton Vinery, La Rue Des Pointes, GY6 8UJ</p>
           </div>
           <div className="flex items-center gap-2">
             <PhoneIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-            <p className="text-gray-500 dark:text-gray-400">(555) 555-5555</p>
+            {/* <p className="text-gray-500 dark:text-gray-400">(555) 555-5555</p> */}
+            <Link className="text-gray-500 dark:text-gray-400" to="tel:07781103864">0778 110 3864</Link>
+
           </div>
           <div className="flex items-center gap-2">
             <MailIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-            <p className="text-gray-500 dark:text-gray-400">info@sparklingclean.com</p>
+            {/* <p className="text-gray-500 dark:text-gray-400">info@sparklingclean.com</p> */}
+            <Link className="text-gray-500 dark:text-gray-400" to="mailto:firstchoicedomestic@suremail.gg">firstchoicedomestic@suremail.gg</Link>
+
           </div>
         </div>
         <div className="flex justify-center mt-8">

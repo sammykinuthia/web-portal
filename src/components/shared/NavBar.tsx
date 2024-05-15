@@ -37,8 +37,8 @@ export default function NavBar() {
                 </nav>
                 <Sheet >
                     <SheetTrigger asChild>
-                        <div className="w-full flex justify-end">
-                            <Button className="lg:hidden place-items-end self-end" size="icon" variant="outline">
+                        <div className="w-full flex justify-end lg:hidden">
+                            <Button className=" place-items-end self-end" size="icon" variant="outline">
                                 <MenuIcon className="size-20" />
                                 <span className="sr-only">Toggle navigation menu</span>
                             </Button>

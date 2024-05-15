@@ -1,6 +1,7 @@
 
 import { CarouselItem, CarouselContent, CarouselPrevious, CarouselNext, Carousel } from "@/components/ui/carousel"
 import { Card, CardContent, CardDescription, CardHeader } from "./ui/card"
+import AutoPlay from "embla-carousel-autoplay" 
 
 const testimonialList = [
     {
@@ -42,11 +43,11 @@ export default function Testimonials() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center">What Our Customers Say</h2>
             </div>
 
-            <Carousel className="w-full max-w-3xl">
+            <Carousel className="w-full max-w-3xl" opts={{loop:true}} plugins={[AutoPlay({delay: 3000})]}>
                 <CarouselContent >
                     {testimonialList.map((t, i) => (
                         <CarouselItem key={i}>
-                            <Card className="p-10 rounded-lg">
+                            <Card className="p-4 md:p-10 rounded-lg">
                                 <CardHeader className="flex flex-col items-center">
                                     <h4 className="font-semibold">{t.name}</h4>
                                     <CardDescription>
@@ -64,8 +65,8 @@ export default function Testimonials() {
 
 
                 </CarouselContent>
-                <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
-                <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+                <CarouselPrevious className="hidden md:absolute left-4 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="hidden md:absolute right-4 top-1/2 -translate-y-1/2" />
             </Carousel>
         </div>
 

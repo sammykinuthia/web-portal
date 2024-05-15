@@ -45,7 +45,7 @@ export default function Footer() {
             <span className="sr-only">LinkedIn</span>
           </Link>
         </div>
-        <div className="text-sm">© {new Date().getFullYear()} First Choice Domestic Cleaning. All rights reserved.</div>
+        <div className="text-sm text-center">© {new Date().getFullYear()} First Choice Domestic Cleaning. All rights reserved.</div>
       </div>
     </footer>
   )

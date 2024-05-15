@@ -4,8 +4,8 @@ import { buttonVariants } from "./ui/button"
 
 const Offer = () => {
     return (
-        <div className='w-full text-red-500 bg-teal-900 p-4 flex flex-col justify-center items-center'>
-            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl italic uppercase font-bold text-gray-200 text-center">Get in touch with us to enjoy this exclusive price</h3>
+        <div className='w-full text-red-500 bg-teal-900 p-4 py-8 flex flex-col justify-center items-center'>
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl italic uppercase font-bold text-teal-200 text-center">Get in touch with us to enjoy this exclusive price</h3>
             <div className=" drop-shadow-lg shadow-pink-500 rounded-full box-decoration-clone bg-gradient-to-t from-pink-700 to-teal-900 via-pink-900 text-white w-auto px-8 mt-4 h-20  flex justify-center items-center">
                 <h3 className="  z-10  text-2xl text-white font-bold">£21.50 /<span className="text-base text-gray-300"> Cleaner</span> /<span className="text-base text-gray-300">  Hr</span></h3>
             </div>

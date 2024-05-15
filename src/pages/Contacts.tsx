@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link } from "react-router-dom"
 
-const thanksUrl = process.env.VITE_THANKS_URL;
+const thanksUrl = import.meta.env.VITE_THANKS_URL;
 
 function ContactPage() {
   return (

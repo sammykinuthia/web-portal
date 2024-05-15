@@ -9,7 +9,7 @@ export default function Component() {
     return (
         <section className="w-full py-12">
             <div className="container mx-auto ">
-                <Carousel opts={{ loop: true, duration: 29 }} plugins={[Autoplay({delay: 3000,}),]} className="mx-4 md:mx-6">
+                <Carousel opts={{ loop: true, duration: 29 }} plugins={[Autoplay({delay: 3000,}),]} className="md:mx-6">
                     <CarouselContent>
                         <CarouselItem>
                             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
@@ -117,8 +117,8 @@ export default function Component() {
                             </div>
                         </CarouselItem>
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className="hidden lg:flex"/>
+                    <CarouselNext className="hidden lg:flex" />
                 </Carousel>
             </div>
         </section>

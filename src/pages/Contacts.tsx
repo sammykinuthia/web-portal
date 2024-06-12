@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Link } from "react-router-dom"
 
 const thanksUrl = import.meta.env.VITE_THANKS_URL;
 
@@ -76,10 +75,10 @@ function ContactPage() {
                 <h4 className="text-sm font-medium">Contact</h4>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Phone:
-                  <Link to="tel:07781103864"> 0778 110 3864</Link>
+                  <a href="tel:07781103864"> 0778 110 3864</a>
                   <br />
                   Email:
-                  <Link to="mailto:firstchoicedomestic@suremail.gg"> firstchoicedomestic@suremail.gg</Link>
+                  <a href="mailto:firstchoicedomestic@suremail.gg"> firstchoicedomestic@suremail.gg</a>
                 </p>
               </div>
               <div>

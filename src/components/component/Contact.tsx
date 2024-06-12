@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 export default function Contact() {
     return <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
@@ -19,13 +19,13 @@ export default function Contact() {
           <div className="flex items-center gap-2">
             <PhoneIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
             {/* <p className="text-gray-500 dark:text-gray-400">(555) 555-5555</p> */}
-            <Link className="text-gray-500 dark:text-gray-400" to="tel:07781103864">0778 110 3864</Link>
+            <a className="text-gray-500 dark:text-gray-400" href="tel:07781103864">0778 110 3864</a>
 
           </div>
           <div className="flex items-center gap-2">
             <MailIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
             {/* <p className="text-gray-500 dark:text-gray-400">info@sparklingclean.com</p> */}
-            <Link className="text-gray-500 dark:text-gray-400" to="mailto:firstchoicedomestic@suremail.gg">firstchoicedomestic@suremail.gg</Link>
+            <a className="text-gray-500 dark:text-gray-400" href="mailto:firstchoicedomestic@suremail.gg">firstchoicedomestic@suremail.gg</a>
 
           </div>
         </div>

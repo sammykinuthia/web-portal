@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { Link } from "react-router-dom"
+import { Link } from "@tanstack/react-router"
 import { buttonVariants } from "./ui/button"
 
 const Offer = () => {

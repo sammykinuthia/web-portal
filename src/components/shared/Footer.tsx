@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
-import logo from '/public/cleaning.png'
+import { Link } from '@tanstack/react-router'
+import logo from '/cleaning.png'
 
 export default function Footer() {
   return (
     <footer className="bg-white text-gray-900 py-8 sm:py-12 border-t border-gray-200 dark:bg-gray-900 dark:text-gray-400 dark:border-gray-800">
         <div className="w-full flex  justify-center items-center space-x-4 mb-8">
-          <Link className="flex flex-col items-center space-x-2" to="#">
+          <Link className="flex flex-col items-center space-x-2" to="/">
             {/* <MountainIcon className="h-6 w-6 text-gray-400 dark:text-gray-400" /> */}
             <img src={logo} className='size-20' alt='logo'/>
 
@@ -17,33 +17,33 @@ export default function Footer() {
           <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/">
             Home
           </Link>
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/#about">
+          <a  className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" href="/#about">
             About
-          </Link>
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/#services">
+          </a>
+          <a  className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" href="/#services">
             Services
-          </Link>
+          </a>
           <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="/contacts">
             Contacts
           </Link>
         </nav>
         <div className="flex items-center space-x-4">
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="#">
+          <a className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" href="#">
             <TwitterIcon className="h-6 w-6" />
             <span className="sr-only">Twitter</span>
-          </Link>
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="#">
+          </a>
+          <a className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" href="#">
             <FacebookIcon className="h-6 w-6" />
             <span className="sr-only">Facebook</span>
-          </Link>
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="#">
+          </a>
+          <a className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" href="#">
             <InstagramIcon className="h-6 w-6" />
             <span className="sr-only">Instagram</span>
-          </Link>
-          <Link className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" to="#">
+          </a>
+          <a className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors" href="#">
             <LinkedinIcon className="h-6 w-6" />
             <span className="sr-only">LinkedIn</span>
-          </Link>
+          </a>
         </div>
         <div className="text-sm text-center">© {new Date().getFullYear()} First Choice Domestic Cleaning. All rights reserved.</div>
       </div>
